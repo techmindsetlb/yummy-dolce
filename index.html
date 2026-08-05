@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YUMMY DOLCE · Handmade Sweets — Menu &amp; Order</title>
+  <meta name="description" content="Cookies, brownies & bites made with 100% Belgian chocolate. Order on WhatsApp — delivery in Beirut – Dahye." />
+  <meta property="og:title" content="YUMMY DOLCE · Handmade Sweets" />
+  <meta property="og:description" content="Cookies, brownies & bites made with 100% Belgian chocolate. Order via WhatsApp." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Great+Vibes&family=Nunito+Sans:ital,opsz,wght@0,6..12,300..800;1,6..12,300..800&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/site.css" />
+</head>
+<body>
+  <!-- Top marquee ribbon -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track" id="marquee-track"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#top">
+        <svg class="icon brand-heart" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-6.7-4.35-9.33-8.11C.6 9.9 1.9 5.9 5.4 4.9c2.1-.6 4.2.2 5.6 1.8 0 0 1.3-1.9 3.5-1.8h.01c1.15.16 2.24.9 2.92 2.02 1.4 2.35.1 5.1-3.44 7.97C13.16 15.7 12 21 12 21z"/></svg>
+        <span class="brand-name" id="brand-name">YUMMY DOLCE</span>
+      </a>
+
+      <div class="header-actions">
+        <span class="delivery-pill" id="delivery-pill">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span id="delivery-pill-text">Beirut – Dahye</span>
+        </span>
+        <button class="cart-btn" id="cart-btn" type="button" aria-label="Open your order">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+          <span class="cart-label" id="cart-label">Order</span>
+          <span class="cart-badge" id="cart-badge" hidden>0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-floats" aria-hidden="true">
+        <svg class="hf-1" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-6.7-4.35-9.33-8.11C.6 9.9 1.9 5.9 5.4 4.9c2.1-.6 4.2.2 5.6 1.8 0 0 1.3-1.9 3.5-1.8h.01c1.15.16 2.24.9 2.92 2.02 1.4 2.35.1 5.1-3.44 7.97C13.16 15.7 12 21 12 21z"/></svg>
+        <svg class="hf-2" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-6.7-4.35-9.33-8.11C.6 9.9 1.9 5.9 5.4 4.9c2.1-.6 4.2.2 5.6 1.8 0 0 1.3-1.9 3.5-1.8h.01c1.15.16 2.24.9 2.92 2.02 1.4 2.35.1 5.1-3.44 7.97C13.16 15.7 12 21 12 21z"/></svg>
+        <svg class="hf-3" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-6.7-4.35-9.33-8.11C.6 9.9 1.9 5.9 5.4 4.9c2.1-.6 4.2.2 5.6 1.8 0 0 1.3-1.9 3.5-1.8h.01c1.15.16 2.24.9 2.92 2.02 1.4 2.35.1 5.1-3.44 7.97C13.16 15.7 12 21 12 21z"/></svg>
+        <svg class="hf-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-6.7-4.35-9.33-8.11C.6 9.9 1.9 5.9 5.4 4.9c2.1-.6 4.2.2 5.6 1.8 0 0 1.3-1.9 3.5-1.8h.01c1.15.16 2.24.9 2.92 2.02 1.4 2.35.1 5.1-3.44 7.97C13.16 15.7 12 21 12 21z"/></svg>
+        <svg class="hf-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-6.7-4.35-9.33-8.11C.6 9.9 1.9 5.9 5.4 4.9c2.1-.6 4.2.2 5.6 1.8 0 0 1.3-1.9 3.5-1.8h.01c1.15.16 2.24.9 2.92 2.02 1.4 2.35.1 5.1-3.44 7.97C13.16 15.7 12 21 12 21z"/></svg>
+      </div>
+
+      <div class="hero-inner">
+        <p class="hero-eyebrow" id="hero-eyebrow">Handmade with Belgian chocolate</p>
+        <h1 class="hero-title" id="hero-title">Sweets, baked <em>fresh</em> every day.</h1>
+        <p class="hero-lede" id="hero-lede">Cookies, brownies &amp; bites — made to order in Beirut – Dahye. Tap an item, build your box, and we'll take it from there on WhatsApp.</p>
+
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#menu">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            Browse the menu
+          </a>
+          <a class="btn btn-secondary" id="hero-whatsapp" href="#" target="_blank" rel="noopener">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.5 0 1.47 1.07 2.9 1.22 3.1.15.2 2.11 3.22 5.11 4.51.71.31 1.27.49 1.7.63.72.23 1.37.2 1.88.12.57-.09 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35zM12.05 21.8h-.01a9.8 9.8 0 0 1-5-1.37l-.36-.21-3.72.98 1-3.63-.24-.37a9.78 9.78 0 0 1-1.51-5.25c0-5.4 4.4-9.8 9.81-9.8 2.62 0 5.08 1.02 6.93 2.88a9.74 9.74 0 0 1 2.87 6.94c0 5.4-4.4 9.8-9.77 9.8zm8.43-18.26A11.7 11.7 0 0 0 12.04 0C5.45 0 .1 5.34.09 11.93c0 2.1.55 4.15 1.6 5.96L0 24l6.24-1.64a11.9 11.9 0 0 0 5.8 1.48h.01c6.58 0 11.94-5.35 11.95-11.94 0-3.19-1.24-6.19-3.5-8.45z"/></svg>
+            WhatsApp us
+          </a>
+        </div>
+
+        <div class="hero-chips" id="hero-chips"></div>
+      </div>
+    </section>
+
+    <!-- Menu -->
+    <section id="menu" class="menu-shell" aria-label="Menu">
+      <div class="menu-heading" data-reveal>
+        <span class="menu-eyebrow">Order online</span>
+        <h2>Our Menu</h2>
+        <p>Everything is baked fresh to order. Prices in USD.</p>
+      </div>
+
+      <div id="menu-root">
+        <div class="loader" aria-label="Loading menu">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <svg class="footer-wave" viewBox="0 0 1440 44" preserveAspectRatio="none" aria-hidden="true"><path fill="currentColor" d="M0,22 C120,44 240,44 360,33 C480,22 600,0 720,11 C840,22 960,44 1080,33 C1200,22 1320,0 1440,11 L1440,44 L0,44 Z"/></svg>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a class="brand" href="#top">
+          <svg class="icon brand-heart" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-6.7-4.35-9.33-8.11C.6 9.9 1.9 5.9 5.4 4.9c2.1-.6 4.2.2 5.6 1.8 0 0 1.3-1.9 3.5-1.8h.01c1.15.16 2.24.9 2.92 2.02 1.4 2.35.1 5.1-3.44 7.97C13.16 15.7 12 21 12 21z"/></svg>
+          <span class="brand-name" id="footer-brand">YUMMY DOLCE</span>
+        </a>
+        <p id="footer-about">Cookies, brownies &amp; bites made with 100% Belgian chocolate. Baked fresh every morning.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Find us</h4>
+        <div class="footer-links">
+          <span id="footer-delivery">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Beirut – Dahye</span>
+          </span>
+          <a id="footer-phone" href="https://wa.me/96176707832" target="_blank" rel="noopener">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.35 1.79.68 2.63a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.45-1.25a2 2 0 0 1 2.11-.45c.84.33 1.73.56 2.63.68A2 2 0 0 1 22 16.92z"/></svg>
+            <span id="footer-phone-text">76 707832</span>
+          </a>
+          <span id="footer-hours">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            <span id="footer-hours-text">Open daily · 10:00 – 20:00</span>
+          </span>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Follow us</h4>
+        <div class="footer-socials" id="footer-socials">
+          <a href="#" target="_blank" rel="noopener" aria-label="Instagram" data-social="instagram">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://wa.me/96176707832" target="_blank" rel="noopener" aria-label="WhatsApp" data-social="whatsapp">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.5 0 1.47 1.07 2.9 1.22 3.1.15.2 2.11 3.22 5.11 4.51.71.31 1.27.49 1.7.63.72.23 1.37.2 1.88.12.57-.09 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35zM12.05 21.8h-.01a9.8 9.8 0 0 1-5-1.37l-.36-.21-3.72.98 1-3.63-.24-.37a9.78 9.78 0 0 1-1.51-5.25c0-5.4 4.4-9.8 9.81-9.8 2.62 0 5.08 1.02 6.93 2.88a9.74 9.74 0 0 1 2.87 6.94c0 5.4-4.4 9.8-9.77 9.8zm8.43-18.26A11.7 11.7 0 0 0 12.04 0C5.45 0 .1 5.34.09 11.93c0 2.1.55 4.15 1.6 5.96L0 24l6.24-1.64a11.9 11.9 0 0 0 5.8 1.48h.01c6.58 0 11.94-5.35 11.95-11.94 0-3.19-1.24-6.19-3.5-8.45z"/></svg>
+          </a>
+          <a href="#" target="_blank" rel="noopener" aria-label="TikTok" data-social="tiktok">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+          </a>
+          <a href="#" target="_blank" rel="noopener" aria-label="Facebook" data-social="facebook">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      Made with <span class="heart">♥</span> for Yummy Dolce · Order on WhatsApp
+    </div>
+  </footer>
+
+  <!-- Mobile cart bar -->
+  <div class="cart-bar" id="cart-bar" role="button" tabindex="0" aria-label="Open your order">
+    <div class="cart-bar-total">
+      <small id="cart-bar-count">0 items</small>
+      <span id="cart-bar-total">$0.00</span>
+    </div>
+    <button class="btn btn-primary btn-sm" id="cart-bar-open" type="button">View order</button>
+  </div>
+
+  <!-- Overlay -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Cart drawer -->
+  <aside class="cart-drawer" id="cart-drawer" aria-label="Your order" aria-hidden="true">
+    <div class="drawer-head">
+      <h3>Your order</h3>
+      <button class="drawer-close" id="drawer-close" type="button" aria-label="Close cart">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="drawer-body" id="drawer-body"></div>
+    <div class="drawer-foot" id="drawer-foot" hidden>
+      <div class="drawer-subtotal">
+        <span class="st-label">Subtotal</span>
+        <span class="st-value" id="drawer-total">$0.00</span>
+      </div>
+      <button class="btn btn-primary btn-block" id="checkout-btn" type="button">
+        <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.5 0 1.47 1.07 2.9 1.22 3.1.15.2 2.11 3.22 5.11 4.51.71.31 1.27.49 1.7.63.72.23 1.37.2 1.88.12.57-.09 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35zM12.05 21.8h-.01a9.8 9.8 0 0 1-5-1.37l-.36-.21-3.72.98 1-3.63-.24-.37a9.78 9.78 0 0 1-1.51-5.25c0-5.4 4.4-9.8 9.81-9.8 2.62 0 5.08 1.02 6.93 2.88a9.74 9.74 0 0 1 2.87 6.94c0 5.4-4.4 9.8-9.77 9.8zm8.43-18.26A11.7 11.7 0 0 0 12.04 0C5.45 0 .1 5.34.09 11.93c0 2.1.55 4.15 1.6 5.96L0 24l6.24-1.64a11.9 11.9 0 0 0 5.8 1.48h.01c6.58 0 11.94-5.35 11.95-11.94 0-3.19-1.24-6.19-3.5-8.45z"/></svg>
+        Checkout on WhatsApp
+      </button>
+      <p class="drawer-hint">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span id="drawer-hint-text">We deliver in Beirut – Dahye</span>
+      </p>
+    </div>
+  </aside>
+
+  <!-- Modal host (option picker / checkout) -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-card" id="modal-card"></div>
+  </div>
+
+  <div class="toast-root" id="toast-root" aria-live="polite"></div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

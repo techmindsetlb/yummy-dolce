@@ -1,0 +1,215 @@
+{
+  "version": 1,
+  "updatedAt": null,
+  "business": {
+    "name": "YUMMY DOLCE",
+    "tagline": "Handmade sweets, baked fresh",
+    "about": "Cookies, brownies & bites made with 100% Belgian chocolate. Baked fresh every morning.",
+    "whatsapp": "96176707832",
+    "delivery": "Beirut – Dahye",
+    "hours": "Open daily · 10:00 – 20:00",
+    "currency": "$",
+    "orderPrefix": "YD",
+    "instagram": "",
+    "facebook": "",
+    "tiktok": ""
+  },
+  "categories": [
+    {
+      "id": "cookies",
+      "name": "Cookies",
+      "subtitle": "135 g · baked fresh every morning",
+      "sort": 1,
+      "items": [
+        {
+          "id": "ck-original",
+          "name": "Original",
+          "description": "With 100% Belgian chocolate",
+          "price": 4,
+          "image": null,
+          "sort": 1,
+          "optionGroups": []
+        },
+        {
+          "id": "ck-double",
+          "name": "Double Chocolate",
+          "description": "With 100% Belgian chocolate",
+          "price": 4.5,
+          "image": null,
+          "sort": 2,
+          "optionGroups": []
+        },
+        {
+          "id": "ck-redvelvet",
+          "name": "Red Velvet Cheesecake",
+          "description": "With cream cheese filling",
+          "price": 4.5,
+          "image": null,
+          "sort": 3,
+          "optionGroups": []
+        },
+        {
+          "id": "ck-biscoff",
+          "name": "Biscoff Dream",
+          "description": "With biscuit crunch & spread filling",
+          "price": 4.5,
+          "image": null,
+          "sort": 4,
+          "optionGroups": []
+        },
+        {
+          "id": "ck-sharing",
+          "name": "Sharing Box",
+          "description": "12 pcs · 80 g — perfect for sharing",
+          "price": 27,
+          "image": null,
+          "sort": 5,
+          "optionGroups": []
+        }
+      ]
+    },
+    {
+      "id": "brownies",
+      "name": "Brownies",
+      "subtitle": "Pick your flavor and size",
+      "sort": 2,
+      "items": [
+        {
+          "id": "br-brownie",
+          "name": "Brownie",
+          "description": "Rich, fudgy & chocolaty — choose your flavor, size and topping.",
+          "price": null,
+          "image": null,
+          "sort": 1,
+          "optionGroups": [
+            {
+              "id": "flavor",
+              "label": "Flavor",
+              "required": true,
+              "multiple": false,
+              "choices": [
+                { "id": "classic", "label": "Classic fudge", "price": null, "description": "Rich, fudgy, and chocolaty" },
+                { "id": "nyc", "label": "NYC Cheesecake", "price": null, "description": "Creamy swirls with rich brownies" },
+                { "id": "brookies", "label": "Brookies", "price": null, "description": "The perfect mix — brownies + cookies" },
+                { "id": "biscoff", "label": "Biscoff", "price": null, "description": "Biscoff spread swirls with brownies" }
+              ]
+            },
+            {
+              "id": "size",
+              "label": "Size",
+              "required": true,
+              "multiple": false,
+              "choices": [
+                { "id": "m1", "label": "Medium · 1 pc", "price": 3.5, "description": "" },
+                { "id": "m3", "label": "Medium · 3 pcs", "price": 9, "description": "" },
+                { "id": "m6", "label": "Medium · 6 pcs", "price": 16, "description": "" },
+                { "id": "l1", "label": "Large · 1 pc", "price": 5, "description": "" },
+                { "id": "l3", "label": "Large · 3 pcs", "price": 12.5, "description": "" }
+              ]
+            },
+            {
+              "id": "extras",
+              "label": "Extras",
+              "required": false,
+              "multiple": true,
+              "choices": [
+                { "id": "topping", "label": "Topping", "price": 0.5, "description": "" }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bites",
+      "name": "Bites",
+      "subtitle": "12 bites + dip",
+      "sort": 3,
+      "items": [
+        {
+          "id": "bt-original",
+          "name": "Original",
+          "description": "12 bites + dip",
+          "price": 5,
+          "image": null,
+          "sort": 1,
+          "optionGroups": []
+        },
+        {
+          "id": "bt-double",
+          "name": "Double Chocolate",
+          "description": "12 bites + dip",
+          "price": 5,
+          "image": null,
+          "sort": 2,
+          "optionGroups": []
+        },
+        {
+          "id": "bt-redvelvet",
+          "name": "Red Velvet",
+          "description": "12 bites + dip",
+          "price": 5,
+          "image": null,
+          "sort": 3,
+          "optionGroups": []
+        },
+        {
+          "id": "bt-biscoff",
+          "name": "Biscoff Dream",
+          "description": "12 bites + dip",
+          "price": 5,
+          "image": null,
+          "sort": 4,
+          "optionGroups": []
+        },
+        {
+          "id": "bt-allin1",
+          "name": "All In 1",
+          "description": "12 bites + dip — a little of everything",
+          "price": 5,
+          "image": null,
+          "sort": 5,
+          "optionGroups": []
+        }
+      ]
+    },
+    {
+      "id": "browniebites",
+      "name": "Brownie Bites",
+      "subtitle": "Bite-size brownies, made to share",
+      "sort": 4,
+      "items": [
+        {
+          "id": "bb-sharing",
+          "name": "Sharing Box",
+          "description": "50 cookie bites · 500 g · 4 dips",
+          "price": 18,
+          "image": null,
+          "sort": 1,
+          "optionGroups": []
+        },
+        {
+          "id": "bb-classic",
+          "name": "Classic Fudge",
+          "description": "With dip",
+          "price": null,
+          "image": null,
+          "sort": 2,
+          "optionGroups": [
+            {
+              "id": "size",
+              "label": "Size",
+              "required": true,
+              "multiple": false,
+              "choices": [
+                { "id": "6", "label": "6 pcs", "price": 5, "description": "" },
+                { "id": "12", "label": "12 pcs", "price": 8, "description": "" },
+                { "id": "24", "label": "24 pcs", "price": 16.5, "description": "" }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

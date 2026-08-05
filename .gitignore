@@ -1,0 +1,11 @@
+# Cloudflare Wrangler local state
+.wrangler/
+node_modules/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log
+
+# Local assistant skills (not part of the site)
+skills/

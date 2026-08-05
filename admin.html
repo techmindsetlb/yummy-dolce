@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>YUMMY DOLCE · Admin</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Great+Vibes&family=Nunito+Sans:ital,opsz,wght@0,6..12,300..800;1,6..12,300..800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+  <!-- ============ Login ============ -->
+  <div id="login-view" class="login-view">
+    <div class="login-card" data-reveal>
+      <div class="login-logo">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-6.7-4.35-9.33-8.11C.6 9.9 1.9 5.9 5.4 4.9c2.1-.6 4.2.2 5.6 1.8 0 0 1.3-1.9 3.5-1.8h.01c1.15.16 2.24.9 2.92 2.02 1.4 2.35.1 5.1-3.44 7.97C13.16 15.7 12 21 12 21z"/></svg>
+      </div>
+      <h1>YUMMY DOLCE</h1>
+      <p class="login-sub">Menu admin panel</p>
+
+      <form id="login-form" class="login-form">
+        <div class="form-field">
+          <label for="passcode">Passcode</label>
+          <input id="passcode" name="passcode" type="password" autocomplete="current-password" placeholder="Enter your passcode" required />
+        </div>
+        <p class="login-error" id="login-error" hidden></p>
+        <button class="btn btn-primary btn-block" type="submit" id="login-btn">
+          Unlock panel
+        </button>
+      </form>
+
+      <p class="login-hint">Tip: you can change the passcode anytime in Settings.</p>
+    </div>
+  </div>
+
+  <!-- ============ Admin ============ -->
+  <div id="admin-view" class="admin-view" hidden>
+    <aside class="admin-side">
+      <div class="admin-brand">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-6.7-4.35-9.33-8.11C.6 9.9 1.9 5.9 5.4 4.9c2.1-.6 4.2.2 5.6 1.8 0 0 1.3-1.9 3.5-1.8h.01c1.15.16 2.24.9 2.92 2.02 1.4 2.35.1 5.1-3.44 7.97C13.16 15.7 12 21 12 21z"/></svg>
+        <div>
+          <strong>YUMMY DOLCE</strong>
+          <span>Admin</span>
+        </div>
+      </div>
+
+      <nav class="admin-nav">
+        <button class="admin-nav-item active" data-tab="menu" type="button">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          Menu
+        </button>
+        <button class="admin-nav-item" data-tab="orders" type="button">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+          Orders
+          <span class="nav-badge" id="orders-badge" hidden></span>
+        </button>
+        <button class="admin-nav-item" data-tab="settings" type="button">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+          Settings
+        </button>
+      </nav>
+
+      <div class="admin-side-foot">
+        <a href="index.html" target="_blank" rel="noopener" id="view-site">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+          View site
+        </a>
+        <button class="admin-nav-item logout" id="logout-btn" type="button">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg>
+          Log out
+        </button>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <header class="admin-topbar">
+        <h1 id="tab-title">Menu</h1>
+        <div class="topbar-actions">
+          <span class="save-state" id="save-state" hidden>
+            <span class="dot"></span> Unsaved changes
+          </span>
+          <button class="btn btn-primary btn-sm" id="save-btn" type="button" disabled>
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8"/><path d="M7 3v5h8"/></svg>
+            Save changes
+          </button>
+        </div>
+      </header>
+
+      <!-- Menu tab -->
+      <section class="tab-pane" id="tab-menu">
+        <div id="menu-pane"></div>
+      </section>
+
+      <!-- Orders tab -->
+      <section class="tab-pane" id="tab-orders" hidden>
+        <div class="pane-head">
+          <p class="pane-desc">Orders sent by customers through the site are logged here automatically — even if a WhatsApp message is missed. Mark them as you work through them.</p>
+          <button class="btn btn-secondary btn-sm" id="refresh-orders" type="button">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
+            Refresh
+          </button>
+        </div>
+        <div id="orders-pane"></div>
+      </section>
+
+      <!-- Settings tab -->
+      <section class="tab-pane" id="tab-settings" hidden>
+        <div class="settings-grid">
+          <div class="admin-card">
+            <h2>Business details</h2>
+            <p class="card-desc">Shown in the header, hero and footer of the menu site.</p>
+            <div class="settings-form" id="business-form">
+              <div class="form-field">
+                <label for="set-name">Brand name</label>
+                <input id="set-name" type="text" maxlength="40" />
+              </div>
+              <div class="form-field">
+                <label for="set-tagline">Tagline (script text)</label>
+                <input id="set-tagline" type="text" maxlength="60" />
+              </div>
+              <div class="form-field">
+                <label for="set-about">About</label>
+                <textarea id="set-about" rows="2" maxlength="240"></textarea>
+              </div>
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="set-whatsapp">WhatsApp number (no +)</label>
+                  <input id="set-whatsapp" type="tel" maxlength="20" placeholder="96176707832" />
+                </div>
+                <div class="form-field">
+                  <label for="set-currency">Currency symbol</label>
+                  <input id="set-currency" type="text" maxlength="4" value="$" />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="set-delivery">Delivery area</label>
+                  <input id="set-delivery" type="text" maxlength="60" />
+                </div>
+                <div class="form-field">
+                  <label for="set-hours">Opening hours</label>
+                  <input id="set-hours" type="text" maxlength="60" />
+                </div>
+              </div>
+              <div class="form-field">
+                <label for="set-orderprefix">Order prefix (e.g. YD)</label>
+                <input id="set-orderprefix" type="text" maxlength="6" />
+              </div>
+              <h3>Social links (optional)</h3>
+              <div class="form-field">
+                <label for="set-instagram">Instagram URL</label>
+                <input id="set-instagram" type="url" placeholder="https://instagram.com/yummydolce" />
+              </div>
+              <div class="form-field">
+                <label for="set-tiktok">TikTok URL</label>
+                <input id="set-tiktok" type="url" placeholder="https://tiktok.com/@" />
+              </div>
+              <div class="form-field">
+                <label for="set-facebook">Facebook URL</label>
+                <input id="set-facebook" type="url" placeholder="https://facebook.com/yummydolce" />
+              </div>
+              <button class="btn btn-primary" id="business-save" type="button">Save business details</button>
+            </div>
+          </div>
+
+          <div class="admin-card">
+            <h2>Change passcode</h2>
+            <p class="card-desc">Your secret key for this panel. Keep it somewhere safe.</p>
+            <div class="settings-form" id="passcode-form">
+              <div class="form-field">
+                <label for="pw-current">Current passcode</label>
+                <input id="pw-current" type="password" autocomplete="current-password" />
+              </div>
+              <div class="form-field">
+                <label for="pw-new">New passcode</label>
+                <input id="pw-new" type="password" autocomplete="new-password" minlength="6" />
+              </div>
+              <div class="form-field">
+                <label for="pw-confirm">Confirm new passcode</label>
+                <input id="pw-confirm" type="password" autocomplete="new-password" />
+              </div>
+              <button class="btn btn-primary" id="passcode-save" type="button">Update passcode</button>
+            </div>
+            <hr />
+            <h2>About this setup</h2>
+            <p class="card-desc">
+              This site is hosted on GitHub Pages and syncs with a Cloudflare Worker
+              (KV for data and photos). Nothing is stored on customers' devices —
+              every visitor sees the latest menu instantly.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Modal host -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-card" id="modal-card"></div>
+  </div>
+
+  <div class="toast-root" id="toast-root" aria-live="polite"></div>
+
+  <script type="module" src="js/admin.js"></script>
+</body>
+</html>

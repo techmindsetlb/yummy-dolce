@@ -1,0 +1,292 @@
+/* ============================================================
+   YUMMY DOLCE — Design tokens (Modern Patisserie)
+   ============================================================ */
+:root {
+  /* Palette */
+  --canvas-1: #FBF1F1;
+  --canvas-2: #F7E4E4;
+  --card: #FFFFFF;
+  --ink: #4A2E2B;
+  --ink-soft: #6E524C;
+  --ink-muted: #96726B;
+  --rose: #C96F6F;
+  --rose-deep: #B85C5C;
+  --rose-soft: #F3DCDC;
+  --rose-mist: #FBEFF0;
+  --hairline: #EEDADA;
+  --honey: #D9A05B;
+  --white: #FFFFFF;
+  --success: #4C9A6E;
+  --danger: #C1504D;
+
+  /* Gradients */
+  --grad-canvas: linear-gradient(180deg, var(--canvas-1) 0%, var(--canvas-2) 100%);
+  --grad-rose: linear-gradient(135deg, #D98A8A 0%, var(--rose-deep) 100%);
+  --grad-card: linear-gradient(160deg, #FDF6F6 0%, var(--rose-mist) 100%);
+
+  /* Shadows */
+  --shadow-sm: 0 2px 10px rgba(74, 46, 43, 0.06);
+  --shadow-md: 0 10px 30px rgba(74, 46, 43, 0.10);
+  --shadow-lg: 0 24px 60px rgba(74, 46, 43, 0.16);
+
+  /* Radii */
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 24px;
+  --r-xl: 32px;
+  --r-full: 999px;
+
+  /* Typography */
+  --font-display: "Fraunces", "Georgia", serif;
+  --font-script: "Great Vibes", cursive;
+  --font-body: "Nunito Sans", system-ui, -apple-system, sans-serif;
+
+  /* Fluid type scale */
+  --text-hero: clamp(2.5rem, 6.5vw + 1rem, 4.75rem);
+  --text-hero-lede: clamp(1.05rem, 1vw + 0.8rem, 1.35rem);
+  --text-h2: clamp(1.9rem, 3vw + 0.9rem, 2.9rem);
+  --text-h3: clamp(1.3rem, 1.2vw + 0.8rem, 1.7rem);
+  --text-base: clamp(1rem, 0.4vw + 0.92rem, 1.08rem);
+  --text-sm: 0.92rem;
+  --text-xs: 0.82rem;
+
+  /* Spacing scale */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 3rem;
+  --sp-8: 4rem;
+  --sp-9: 6rem;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-fast: 150ms;
+  --dur-med: 260ms;
+  --dur-slow: 480ms;
+
+  /* Layout */
+  --page-max: 1180px;
+  --header-h: 68px;
+}
+
+/* ---------- Reset & base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--canvas-1);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+a {
+  color: var(--rose-deep);
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+  line-height: 1.12;
+}
+
+p {
+  margin: 0;
+}
+
+:focus-visible {
+  outline: 3px solid rgba(201, 111, 111, 0.55);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 0;
+  border-radius: var(--r-full);
+  font-weight: 700;
+  font-size: var(--text-sm);
+  letter-spacing: 0.01em;
+  padding: 0.85rem 1.6rem;
+  transition: transform var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-med) var(--ease-out),
+    background-color var(--dur-med) var(--ease-out),
+    color var(--dur-med) var(--ease-out),
+    border-color var(--dur-med) var(--ease-out);
+  will-change: transform;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  background: var(--grad-rose);
+  color: var(--white);
+  box-shadow: 0 10px 24px rgba(184, 92, 92, 0.35);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(184, 92, 92, 0.42);
+}
+
+.btn-secondary {
+  background: var(--white);
+  color: var(--rose-deep);
+  border: 1.5px solid var(--rose);
+}
+
+.btn-secondary:hover {
+  border-color: var(--rose-deep);
+  background: var(--rose-mist);
+  transform: translateY(-2px);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink-soft);
+}
+
+.btn-ghost:hover {
+  background: var(--rose-soft);
+  color: var(--ink);
+}
+
+.btn-danger {
+  background: transparent;
+  color: var(--danger);
+  border: 1.5px solid rgba(193, 80, 77, 0.45);
+}
+
+.btn-danger:hover {
+  background: rgba(193, 80, 77, 0.08);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn-sm {
+  padding: 0.5rem 1rem;
+  font-size: var(--text-xs);
+}
+
+.btn[disabled] {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* ---------- Icon sizes ---------- */
+.icon {
+  width: 1.15em;
+  height: 1.15em;
+  flex: none;
+}
+
+.icon-lg {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.icon-xl {
+  width: 2em;
+  height: 2em;
+}
+
+/* ---------- Reveal on scroll ---------- */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+[data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Scrollbar (subtle) ---------- */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--rose-soft);
+  border-radius: 999px;
+  border: 2px solid var(--canvas-1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--rose);
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}
