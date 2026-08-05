@@ -78,6 +78,57 @@ body {
   color: var(--ink-muted);
 }
 
+/* ---------- Forms (shared by login & settings) ----------
+   .form-field lives here (not site.css) so the admin panel
+   always has styled inputs even without the site stylesheet. */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-field label {
+  font-size: var(--text-sm);
+  font-weight: 800;
+  color: var(--ink-soft);
+}
+
+.form-field input,
+.form-field textarea,
+.form-field select {
+  border: 1.5px solid var(--hairline);
+  border-radius: var(--r-md);
+  padding: 0.8rem 1rem;
+  background: var(--white);
+  color: var(--ink);
+  width: 100%;
+  transition: border-color var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out);
+  font-size: var(--text-sm);
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: var(--ink-muted);
+  opacity: 0.75;
+}
+
+.form-field input:focus,
+.form-field textarea:focus,
+.form-field select:focus {
+  outline: none;
+  border-color: var(--rose);
+  box-shadow: 0 0 0 4px rgba(201, 111, 111, 0.15);
+}
+
+/* Nicer lock-style passcode field on the login screen */
+.login-form .form-field input[type="password"] {
+  font-size: 1.05rem;
+  letter-spacing: 0.12em;
+  text-align: center;
+  padding: 0.95rem 1rem;
+}
+
 /* ---------- Layout ---------- */
 .admin-view {
   display: grid;
