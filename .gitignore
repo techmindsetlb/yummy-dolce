@@ -9,3 +9,8 @@ Thumbs.db
 
 # Local assistant skills (not part of the site)
 skills/
+
+# Local reference images (keep off GitHub)
+*.jpg
+*.jpeg
+*.png
