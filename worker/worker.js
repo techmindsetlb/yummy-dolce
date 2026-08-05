@@ -129,12 +129,18 @@ async function handlePostOrder(request, env, json, fail) {
     return fail("Invalid JSON body");
   }
 
-  const id = String(body.id || "").slice(0, 40);
-  if (!id) return fail("Missing order id");
+  // Validate before consuming an order number, so failed requests don't skip a number.
   const total = Number(body.total);
   if (Number.isNaN(total)) return fail("Invalid total");
 
   const items = Array.isArray(body.items) ? body.items.slice(0, 100) : [];
+
+  // Sequential order number from a KV counter — starts at 0001, never repeats.
+  const rawCount = await env.MENU.get("counter:order");
+  const next = (parseInt(rawCount || "0", 10) || 0) + 1;
+  await env.MENU.put("counter:order", String(next));
+  const id = String(next).padStart(4, "0");
+
   const record = {
     id,
     source: String(body.source || "site").slice(0, 20),
@@ -148,8 +154,9 @@ async function handlePostOrder(request, env, json, fail) {
     })),
     total: Math.round(total * 100) / 100,
     name: String(body.name || "").slice(0, 120),
+    phone: String(body.phone || "").slice(0, 40),
+    address: String(body.address || "").slice(0, 300),
     note: String(body.note || "").slice(0, 400),
-    delivery: String(body.delivery || "").slice(0, 120),
     status: "new",
     createdAt: new Date().toISOString(),
   };
@@ -157,7 +164,7 @@ async function handlePostOrder(request, env, json, fail) {
   await env.MENU.put(`orders:${id}`, JSON.stringify(record), {
     expirationTtl: ORDER_TTL_SECONDS,
   });
-  return json({ ok: true }, 201);
+  return json({ ok: true, id }, 201);
 }
 
 /* ============================ Auth ============================ */

@@ -536,12 +536,20 @@ function openCheckoutModal() {
         <div class="cs-row total"><span>Subtotal</span><span>${fmtPrice(cur, cart.subtotal)}</span></div>
       </div>
       <div class="form-field">
-        <label for="co-name">Your name (optional)</label>
-        <input id="co-name" type="text" placeholder="e.g. Sam" maxlength="60" autocomplete="name" />
+        <label for="co-name">Your name *</label>
+        <input id="co-name" type="text" placeholder="e.g. Sam" maxlength="60" autocomplete="name" required />
+      </div>
+      <div class="form-field">
+        <label for="co-phone">Phone number *</label>
+        <input id="co-phone" type="tel" placeholder="e.g. 03 123 456" maxlength="20" autocomplete="tel" inputmode="tel" required />
+      </div>
+      <div class="form-field">
+        <label for="co-address">Delivery address *</label>
+        <textarea id="co-address" rows="2" placeholder="Street, building, floor, area, nearest landmark…" maxlength="300" autocomplete="street-address" required></textarea>
       </div>
       <div class="form-field">
         <label for="co-note">Notes (optional)</label>
-        <textarea id="co-note" rows="2" placeholder="Any special requests, pickup time, address…" maxlength="300"></textarea>
+        <textarea id="co-note" rows="2" placeholder="Any special requests or pickup time…" maxlength="300"></textarea>
       </div>
     </div>
     <div class="modal-foot" style="justify-content:flex-end">
@@ -552,14 +560,36 @@ function openCheckoutModal() {
 
   const card = document.getElementById("modal-card");
   const nameInput = card.querySelector("#co-name");
+  const phoneInput = card.querySelector("#co-phone");
+  const addressInput = card.querySelector("#co-address");
   const noteInput = card.querySelector("#co-note");
   const sendBtn = card.querySelector("#co-send");
   setTimeout(() => nameInput.focus(), 60);
 
-  sendBtn.addEventListener("click", () => {
+  sendBtn.addEventListener("click", async () => {
     const name = nameInput.value.trim();
+    const phone = phoneInput.value.trim();
+    const address = addressInput.value.trim();
     const note = noteInput.value.trim();
-    sendOrder({ name, note });
+
+    if (!name) {
+      toast("Please enter your name");
+      nameInput.focus();
+      return;
+    }
+    if (!phone) {
+      toast("Please enter your phone number");
+      phoneInput.focus();
+      return;
+    }
+    if (!address) {
+      toast("Please enter your delivery address");
+      addressInput.focus();
+      return;
+    }
+
+    sendBtn.disabled = true;
+    await sendOrder({ name, phone, address, note });
   });
 
   card.addEventListener("keydown", (e) => {
@@ -567,10 +597,14 @@ function openCheckoutModal() {
   });
 }
 
-function sendOrder({ name, note }) {
+async function sendOrder({ name, phone, address, note }) {
   const cur = business.currency || "$";
-  const prefix = business.orderPrefix || "YD";
-  const orderId = `${prefix}-${makeOrderId()}`;
+
+  // Reserve the WhatsApp tab synchronously (inside the click gesture) so popup
+  // blockers can't stop it, then point it at the final link once the order
+  // number is reserved. With noopener the handle would be null, so omit it and
+  // sever the opener link ourselves after navigation.
+  const win = window.open("", "_blank");
 
   const lines = cart.lines
     .map((l) => {
@@ -582,26 +616,11 @@ function sendOrder({ name, note }) {
     })
     .join("\n");
 
-  const msg = [
-    `🧁 *New order — ${business.name || "YUMMY DOLCE"}* 🧁`,
-    `Order #${orderId}`,
-    ``,
-    `🛒 *Items*`,
-    lines,
-    ``,
-    `*Subtotal: ${fmtPrice(cur, cart.subtotal)}*`,
-    ``,
-    name ? `👤 *Name:* ${name}` : ``,
-    note ? `📝 *Note:* ${note}` : ``,
-    `📍 *Delivery:* ${business.delivery || "Beirut – Dahye"}`,
-  ]
-    .filter((s) => s !== "")
-    .join("\n");
-
-  // Log the order to the worker (best-effort; WhatsApp opens regardless)
-  api
-    .submitOrder({
-      id: orderId,
+  // Reserve the next sequential order number from the worker (starts at 0001).
+  // If the worker is unreachable, WhatsApp still opens with a temporary number.
+  let orderId = "";
+  try {
+    const req = api.submitOrder({
       source: "site",
       items: cart.lines.map((l) => ({
         name: l.name,
@@ -611,18 +630,54 @@ function sendOrder({ name, note }) {
       })),
       total: cart.subtotal,
       name: name || "",
+      phone: phone || "",
+      address: address || "",
       note: note || "",
-      delivery: business.delivery || "",
-      createdAt: new Date().toISOString(),
-    })
-    .catch(() => {});
+    });
+    req.catch(() => {}); // consume a late rejection so it's never unhandled
+    const res = await withTimeout(req, 6000);
+    orderId = (res && res.id) || "";
+  } catch {
+    /* worker unreachable — fall back below */
+  }
+  if (!orderId) orderId = makeOrderId();
 
-  window.open(waLink(business.whatsapp, msg), "_blank", "noopener");
+  const msg = [
+    `🧁 *New order — ${business.name || "YUMMY DOLCE"}* 🧁`,
+    `Order #${orderId}`,
+    ``,
+    `🛒 *Items*`,
+    lines,
+    ``,
+    `*Subtotal: ${fmtPrice(cur, cart.subtotal)}*`,
+    ``,
+    `👤 *Name:* ${name}`,
+    `📞 *Phone:* ${phone}`,
+    `🏠 *Address:* ${address}`,
+    note ? `📝 *Note:* ${note}` : ``,
+  ]
+    .filter((s) => s !== "")
+    .join("\n");
+
+  const link = waLink(business.whatsapp, msg);
+  if (win && !win.closed) {
+    win.location.href = link;
+    win.opener = null; // sever the opener link, like noopener would
+  } else {
+    window.open(link, "_blank", "noopener");
+  }
 
   closeModal();
   closeDrawer();
   cart.clear();
   toast("Opening WhatsApp… your order is on its way!");
+}
+
+function withTimeout(promise, ms) {
+  return Promise.race([
+    promise,
+    new Promise((_, reject) => setTimeout(() => reject(new Error("timeout")), ms)),
+  ]);
 }
 
 function makeOrderId() {

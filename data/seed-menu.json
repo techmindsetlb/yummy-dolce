@@ -26,7 +26,7 @@
           "name": "Original",
           "description": "With 100% Belgian chocolate",
           "price": 4,
-          "image": null,
+          "image": "/api/images/img/2c725608-450b-4167-b5ab-b69af2e3cac5.webp",
           "sort": 1,
           "optionGroups": []
         },
@@ -35,7 +35,7 @@
           "name": "Double Chocolate",
           "description": "With 100% Belgian chocolate",
           "price": 4.5,
-          "image": null,
+          "image": "/api/images/img/f70ee49d-92a8-4b59-8890-270dfcc20fee.webp",
           "sort": 2,
           "optionGroups": []
         },
@@ -44,7 +44,7 @@
           "name": "Red Velvet Cheesecake",
           "description": "With cream cheese filling",
           "price": 4.5,
-          "image": null,
+          "image": "/api/images/img/e6e8d72a-f92d-42c4-a4df-edd1d4b294d4.webp",
           "sort": 3,
           "optionGroups": []
         },
@@ -53,7 +53,7 @@
           "name": "Biscoff Dream",
           "description": "With biscuit crunch & spread filling",
           "price": 4.5,
-          "image": null,
+          "image": "/api/images/img/b13afff2-ee49-4dff-9b42-a13a86c2679e.webp",
           "sort": 4,
           "optionGroups": []
         },
@@ -62,7 +62,7 @@
           "name": "Sharing Box",
           "description": "12 pcs · 80 g — perfect for sharing",
           "price": 27,
-          "image": null,
+          "image": "/api/images/img/94acf92f-84e1-44b2-954c-9c61bddc5d7f.webp",
           "sort": 5,
           "optionGroups": []
         }
@@ -79,7 +79,7 @@
           "name": "Brownie",
           "description": "Rich, fudgy & chocolaty — choose your flavor, size and topping.",
           "price": null,
-          "image": null,
+          "image": "/api/images/img/a9dfee18-a482-4c39-b7a9-2d8de0f32971.webp",
           "sort": 1,
           "optionGroups": [
             {
@@ -88,10 +88,30 @@
               "required": true,
               "multiple": false,
               "choices": [
-                { "id": "classic", "label": "Classic fudge", "price": null, "description": "Rich, fudgy, and chocolaty" },
-                { "id": "nyc", "label": "NYC Cheesecake", "price": null, "description": "Creamy swirls with rich brownies" },
-                { "id": "brookies", "label": "Brookies", "price": null, "description": "The perfect mix — brownies + cookies" },
-                { "id": "biscoff", "label": "Biscoff", "price": null, "description": "Biscoff spread swirls with brownies" }
+                {
+                  "id": "classic",
+                  "label": "Classic fudge",
+                  "price": null,
+                  "description": "Rich, fudgy, and chocolaty"
+                },
+                {
+                  "id": "nyc",
+                  "label": "NYC Cheesecake",
+                  "price": null,
+                  "description": "Creamy swirls with rich brownies"
+                },
+                {
+                  "id": "brookies",
+                  "label": "Brookies",
+                  "price": null,
+                  "description": "The perfect mix — brownies + cookies"
+                },
+                {
+                  "id": "biscoff",
+                  "label": "Biscoff",
+                  "price": null,
+                  "description": "Biscoff spread swirls with brownies"
+                }
               ]
             },
             {
@@ -100,11 +120,36 @@
               "required": true,
               "multiple": false,
               "choices": [
-                { "id": "m1", "label": "Medium · 1 pc", "price": 3.5, "description": "" },
-                { "id": "m3", "label": "Medium · 3 pcs", "price": 9, "description": "" },
-                { "id": "m6", "label": "Medium · 6 pcs", "price": 16, "description": "" },
-                { "id": "l1", "label": "Large · 1 pc", "price": 5, "description": "" },
-                { "id": "l3", "label": "Large · 3 pcs", "price": 12.5, "description": "" }
+                {
+                  "id": "m1",
+                  "label": "Medium · 1 pc",
+                  "price": 3.5,
+                  "description": ""
+                },
+                {
+                  "id": "m3",
+                  "label": "Medium · 3 pcs",
+                  "price": 9,
+                  "description": ""
+                },
+                {
+                  "id": "m6",
+                  "label": "Medium · 6 pcs",
+                  "price": 16,
+                  "description": ""
+                },
+                {
+                  "id": "l1",
+                  "label": "Large · 1 pc",
+                  "price": 5,
+                  "description": ""
+                },
+                {
+                  "id": "l3",
+                  "label": "Large · 3 pcs",
+                  "price": 12.5,
+                  "description": ""
+                }
               ]
             },
             {
@@ -113,7 +158,12 @@
               "required": false,
               "multiple": true,
               "choices": [
-                { "id": "topping", "label": "Topping", "price": 0.5, "description": "" }
+                {
+                  "id": "topping",
+                  "label": "Topping",
+                  "price": 0.5,
+                  "description": ""
+                }
               ]
             }
           ]
@@ -131,7 +181,7 @@
           "name": "Original",
           "description": "12 bites + dip",
           "price": 5,
-          "image": null,
+          "image": "/api/images/img/bff2c5b6-fdd8-4127-be46-aaa31760100c.webp",
           "sort": 1,
           "optionGroups": []
         },
@@ -140,7 +190,7 @@
           "name": "Double Chocolate",
           "description": "12 bites + dip",
           "price": 5,
-          "image": null,
+          "image": "/api/images/img/b6b1c7db-2839-48d6-820f-f1a7c55c5d5d.webp",
           "sort": 2,
           "optionGroups": []
         },
@@ -149,7 +199,7 @@
           "name": "Red Velvet",
           "description": "12 bites + dip",
           "price": 5,
-          "image": null,
+          "image": "/api/images/img/77ec2f1a-19af-410a-85b6-bdbd22c6d199.webp",
           "sort": 3,
           "optionGroups": []
         },
@@ -158,7 +208,7 @@
           "name": "Biscoff Dream",
           "description": "12 bites + dip",
           "price": 5,
-          "image": null,
+          "image": "/api/images/img/261174dd-374d-419b-836c-93cdda31910e.webp",
           "sort": 4,
           "optionGroups": []
         },
@@ -167,7 +217,7 @@
           "name": "All In 1",
           "description": "12 bites + dip — a little of everything",
           "price": 5,
-          "image": null,
+          "image": "/api/images/img/637d5c3c-516c-46da-9537-a1ba03d0bffb.webp",
           "sort": 5,
           "optionGroups": []
         }
@@ -184,7 +234,7 @@
           "name": "Sharing Box",
           "description": "50 cookie bites · 500 g · 4 dips",
           "price": 18,
-          "image": null,
+          "image": "/api/images/img/36639795-3738-4773-a8da-e4c5e696932f.webp",
           "sort": 1,
           "optionGroups": []
         },
@@ -193,7 +243,7 @@
           "name": "Classic Fudge",
           "description": "With dip",
           "price": null,
-          "image": null,
+          "image": "/api/images/img/691e2d69-9a80-4ac1-b19e-44e1988f9423.webp",
           "sort": 2,
           "optionGroups": [
             {
@@ -202,9 +252,24 @@
               "required": true,
               "multiple": false,
               "choices": [
-                { "id": "6", "label": "6 pcs", "price": 5, "description": "" },
-                { "id": "12", "label": "12 pcs", "price": 8, "description": "" },
-                { "id": "24", "label": "24 pcs", "price": 16.5, "description": "" }
+                {
+                  "id": "6",
+                  "label": "6 pcs",
+                  "price": 5,
+                  "description": ""
+                },
+                {
+                  "id": "12",
+                  "label": "12 pcs",
+                  "price": 8,
+                  "description": ""
+                },
+                {
+                  "id": "24",
+                  "label": "24 pcs",
+                  "price": 16.5,
+                  "description": ""
+                }
               ]
             }
           ]

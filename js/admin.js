@@ -62,9 +62,11 @@ $("login-form").addEventListener("submit", async (e) => {
     enterAdmin();
   } catch (err) {
     errEl.textContent =
-      err.status === 429
-        ? "Too many attempts. Please wait a few minutes and try again."
-        : "Incorrect passcode. Please try again.";
+      err.status === 0
+        ? "Can't reach the server. Check your connection and try again."
+        : err.status === 429
+          ? "Too many attempts. Please wait a few minutes and try again."
+          : "Incorrect passcode. Please try again.";
     errEl.hidden = false;
     $("passcode").select();
   } finally {
@@ -763,8 +765,9 @@ function renderOrdersList() {
           </div>
           <div class="order-meta">
             ${o.name ? `<span><strong>Name:</strong> ${escapeHtml(o.name)}</span>` : ""}
+            ${o.phone ? `<span><strong>Phone:</strong> ${escapeHtml(o.phone)}</span>` : ""}
+            ${o.address ? `<span><strong>Address:</strong> ${escapeHtml(o.address)}</span>` : ""}
             ${o.note ? `<span><strong>Note:</strong> ${escapeHtml(o.note)}</span>` : ""}
-            ${o.delivery ? `<span><strong>Delivery:</strong> ${escapeHtml(o.delivery)}</span>` : ""}
             <span><strong>Source:</strong> WhatsApp</span>
           </div>
           <div class="order-foot">

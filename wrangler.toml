@@ -1,18 +1,15 @@
 # Cloudflare Worker configuration for the YUMMY DOLCE menu API.
 # See README.md for the full setup walkthrough.
 
-name = "yummy-dolce-api"
+name = "yummydolce"
 main = "worker/worker.js"
 compatibility_date = "2025-06-01"
 
 # KV namespace for the menu JSON, order log, passcode hash, rate limits AND
 # uploaded product photos (WebP) — no R2, so no credit card is ever required.
-# Create it with:
-#   npx wrangler kv namespace create MENU
-# then paste the returned `id` below.
 [[kv_namespaces]]
 binding = "MENU"
-id = "PASTE_YOUR_KV_NAMESPACE_ID_HERE"
+id = "b3a9caacc315459686b1c57f88f2f974"
 
 # Secrets — set these with `npx wrangler secret put`:
 #   ADMIN_SECRET      → random string used to sign admin login tokens (required)
