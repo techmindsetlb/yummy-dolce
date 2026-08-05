@@ -35,7 +35,6 @@ const els = {
   heroEyebrow: $("hero-eyebrow"),
   heroTitle: $("hero-title"),
   heroLede: $("hero-lede"),
-  heroChips: $("hero-chips"),
   heroWhatsapp: $("hero-whatsapp"),
   marqueeTrack: $("marquee-track"),
   menuRoot: $("menu-root"),
@@ -76,7 +75,7 @@ function renderBusiness() {
   els.footerDelivery.querySelector("span").textContent = b.delivery || SITE_DEFAULTS.delivery;
 
   els.heroEyebrow.textContent = b.tagline || SITE_DEFAULTS.tagline;
-  els.heroLede.textContent = `${b.about || ""} Delivery in ${b.delivery || "Beirut – Dahye"}.`;
+  els.heroLede.textContent = b.about || SITE_DEFAULTS.about;
 
   const wa = waLink(b.whatsapp);
   els.heroWhatsapp.href = wa;
@@ -88,16 +87,6 @@ function renderBusiness() {
   } else {
     els.footerHours.style.display = "none";
   }
-
-  // Hero info chips
-  const chips = [
-    { icon: icons.pin, text: `Delivery · ${b.delivery || "Beirut – Dahye"}` },
-    { icon: icons.whatsapp, text: `Order on WhatsApp · ${formatPhone(b.whatsapp)}` },
-  ];
-  if (b.hours) chips.push({ icon: icons.clock, text: b.hours });
-  els.heroChips.innerHTML = chips
-    .map((c) => `<span class="hero-chip">${c.icon}${escapeHtml(c.text)}</span>`)
-    .join("");
 
   // Footer socials — WhatsApp always, others only when a link is set
   const socials = [
@@ -643,18 +632,18 @@ async function sendOrder({ name, phone, address, note }) {
   if (!orderId) orderId = makeOrderId();
 
   const msg = [
-    `🧁 *New order — ${business.name || "YUMMY DOLCE"}* 🧁`,
+    `*NEW ORDER — ${business.name || "YUMMY DOLCE"}*`,
     `Order #${orderId}`,
     ``,
-    `🛒 *Items*`,
+    `*ITEMS*`,
     lines,
     ``,
     `*Subtotal: ${fmtPrice(cur, cart.subtotal)}*`,
     ``,
-    `👤 *Name:* ${name}`,
-    `📞 *Phone:* ${phone}`,
-    `🏠 *Address:* ${address}`,
-    note ? `📝 *Note:* ${note}` : ``,
+    `*Name:* ${name}`,
+    `*Phone:* ${phone}`,
+    `*Address:* ${address}`,
+    note ? `*Note:* ${note}` : ``,
   ]
     .filter((s) => s !== "")
     .join("\n");
@@ -711,7 +700,7 @@ function init() {
     els.header.classList.toggle("scrolled", window.scrollY > 8);
   }, { passive: true });
 
-  cart.subscribe(() => {
+  const syncCartUI = () => {
     const count = cart.count;
     els.cartBadge.textContent = count;
     els.cartBadge.hidden = count === 0;
@@ -719,8 +708,9 @@ function init() {
     els.cartBarTotal.textContent = fmtPrice(business.currency, cart.subtotal);
     els.cartBar.classList.toggle("show", count > 0);
     if (drawerOpen) renderCart();
-  });
-  els.cartBar.classList.toggle("show", cart.count > 0);
+  };
+  cart.subscribe(syncCartUI);
+  syncCartUI(); // reflect any cart restored from localStorage
 
   loadMenu();
 }

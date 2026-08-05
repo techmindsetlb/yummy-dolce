@@ -730,6 +730,17 @@ body {
   flex-wrap: wrap;
 }
 
+.order-foot-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+}
+
+.order-delete {
+  border-color: rgba(193, 80, 77, 0.35);
+}
+
 .order-foot select {
   border: 1.5px solid var(--hairline);
   border-radius: var(--r-md);

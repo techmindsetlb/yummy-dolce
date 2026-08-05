@@ -265,33 +265,6 @@
   animation: fadeUp 0.8s var(--ease-out) 0.55s forwards;
 }
 
-.hero-chips {
-  margin-top: var(--sp-6);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--sp-3);
-  opacity: 0;
-  animation: fadeUp 0.8s var(--ease-out) 0.7s forwards;
-}
-
-.hero-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  background: var(--white);
-  border: 1px solid var(--hairline);
-  border-radius: var(--r-full);
-  padding: 0.55rem 1.1rem;
-  font-size: var(--text-sm);
-  font-weight: 700;
-  color: var(--ink-soft);
-}
-
-.hero-chip .icon {
-  color: var(--rose);
-}
-
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -1295,6 +1268,11 @@
 .footer-bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.12);
   padding: var(--sp-4) var(--sp-5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.9rem;
   text-align: center;
   font-size: var(--text-xs);
   color: rgba(255, 255, 255, 0.45);
@@ -1302,4 +1280,15 @@
 
 .footer-bottom .heart {
   color: var(--rose);
+}
+
+.footer-bottom a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-weight: 700;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.footer-bottom a:hover {
+  color: var(--white);
 }

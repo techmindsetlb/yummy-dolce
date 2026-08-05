@@ -106,6 +106,12 @@ export function updateOrderStatus(id, status) {
   });
 }
 
+export function deleteOrder(id) {
+  return apiFetch(`/api/admin/orders/${encodeURIComponent(id)}`, {
+    method: "DELETE",
+  });
+}
+
 export function changePasscode(currentPasscode, newPasscode) {
   return apiFetch("/api/admin/passcode", {
     method: "POST",

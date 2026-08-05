@@ -785,7 +785,10 @@ function renderOrdersList() {
                 .map((s) => `<option value="${s}" ${s === (o.status || "new") ? "selected" : ""}>${cap(s)}</option>`)
                 .join("")}
             </select>
-            <a href="${waLink(state.menu.business.whatsapp, `Hi! I'm following up on order #${o.id || ""}`)}" target="_blank" rel="noopener">${icons.whatsapp} Reply on WhatsApp</a>
+            <div class="order-foot-actions">
+              <a href="${waLink(state.menu.business.whatsapp, `Hi! I'm following up on order #${o.id || ""}`)}" target="_blank" rel="noopener">${icons.whatsapp} Reply on WhatsApp</a>
+              <button class="btn btn-danger btn-sm order-delete" data-id="${escapeHtml(o.id)}" type="button">${icons.trash}<span>Delete</span></button>
+            </div>
           </div>
         </div>`;
       })
@@ -806,6 +809,26 @@ function renderOrdersList() {
       } catch (err) {
         sel.value = prev || "new";
         toast(err.message || "Could not update the status.", { duration: 4000 });
+      }
+    });
+  });
+
+  pane.querySelectorAll(".order-delete").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const id = btn.dataset.id;
+      const ok = await confirmDialog(
+        "Delete this order?",
+        `Order #${id} will be permanently removed. This can't be undone.`,
+        "Delete order"
+      );
+      if (!ok) return;
+      try {
+        await api.deleteOrder(id);
+        state.orders = state.orders.filter((o) => o.id !== id);
+        renderOrdersList();
+        toast(`Order #${id} deleted`);
+      } catch (err) {
+        toast(err.message || "Could not delete the order.", { duration: 4000 });
       }
     });
   });

@@ -19,8 +19,7 @@ export const DEFAULT_WHATSAPP = "96176707832";
 export const SITE_DEFAULTS = {
   name: "YUMMY DOLCE",
   tagline: "Handmade sweets, baked fresh",
-  about:
-    "Cookies, brownies & bites made with 100% Belgian chocolate. Baked fresh every morning.",
+  about: "Handmade cookies, brownies & bites with 100% Belgian chocolate.",
   delivery: "Beirut – Dahye",
   hours: "Open daily · 10:00 – 20:00",
   currency: "$",

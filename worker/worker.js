@@ -17,6 +17,7 @@
  *     DELETE /api/admin/image?key=img/...
  *     GET  /api/admin/orders                → list of logged orders (newest first)
  *     PATCH /api/admin/orders/{id}          { status: "new" | "contacted" | "done" }
+ *     DELETE /api/admin/orders/{id}         → remove an order permanently
  *     POST /api/admin/passcode              { currentPasscode, newPasscode }
  *
  * Secrets (set with `wrangler secret put`):
@@ -78,6 +79,9 @@ export default {
       if (method === "GET" && path === "/api/admin/orders") return handleListOrders(env, json);
       if (method === "PATCH" && path.startsWith("/api/admin/orders/")) {
         return handlePatchOrder(request, path, env, json, fail);
+      }
+      if (method === "DELETE" && path.startsWith("/api/admin/orders/")) {
+        return handleDeleteOrder(path, env, json, fail);
       }
 
       return fail("Not found", 404);
@@ -356,6 +360,15 @@ async function handleListOrders(env, json) {
   }
   orders.sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
   return json(orders);
+}
+
+async function handleDeleteOrder(path, env, json, fail) {
+  const id = decodeURIComponent(path.slice("/api/admin/orders/".length));
+  if (!id) return fail("Missing order id");
+  const raw = await env.MENU.get(`orders:${id}`);
+  if (!raw) return fail("Order not found", 404);
+  await env.MENU.delete(`orders:${id}`);
+  return json({ ok: true });
 }
 
 async function handlePatchOrder(request, path, env, json, fail) {

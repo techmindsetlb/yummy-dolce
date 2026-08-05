@@ -1,14 +1,40 @@
 /**
- * In-memory cart.
+ * Cart.
  *
- * Deliberately NOT persisted anywhere — the user asked for no local storage.
- * The menu data is always fetched live from the API; the cart lives only for
- * the current session and resets on refresh.
+ * Persisted to localStorage so an order survives page reloads and accidental
+ * tab closes (the owner asked for this). It's cleared once the order is sent
+ * on WhatsApp. The menu itself is never stored locally — it's always fetched
+ * live from the API.
  */
+const STORAGE_KEY = "yummy-dolce-cart";
+
 class Cart {
   constructor() {
     /** @type {Map<string, import("./cart").CartLine>} */
     this._lines = new Map();
+    this._hydrate();
+  }
+
+  _hydrate() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      const saved = JSON.parse(raw);
+      if (!Array.isArray(saved)) return;
+      for (const line of saved) {
+        if (line && line.key && line.qty > 0) this._lines.set(line.key, line);
+      }
+    } catch {
+      /* ignore corrupt storage */
+    }
+  }
+
+  _persist() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(this.lines));
+    } catch {
+      /* ignore (private mode / quota) */
+    }
   }
 
   /** Add a line or merge into an existing one. */
@@ -68,6 +94,7 @@ class Cart {
   }
 
   _emit() {
+    this._persist();
     window.dispatchEvent(new CustomEvent("cart:change", { detail: this }));
   }
 }
