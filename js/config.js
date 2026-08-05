@@ -26,7 +26,7 @@ export const SITE_DEFAULTS = {
   currency: "$",
   orderPrefix: "YD",
   whatsapp: DEFAULT_WHATSAPP,
-  instagram: "",
+  instagram: "https://www.instagram.com/yummy.dolce/",
   facebook: "",
   tiktok: "",
 };
