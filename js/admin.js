@@ -264,14 +264,23 @@ function renderMenuPane() {
       const catId = block.dataset.cat;
       const act = btn.dataset.act;
 
+      // Item-row buttons first: edit/delete/reorder must target the item,
+      // not the category (they share the same data-act labels as the category ones).
+      const itemEl = btn.closest("[data-item]");
+      if (itemEl) {
+        const cat = state.menu.categories.find((c) => c.id === catId);
+        const itemId = itemEl.dataset.item;
+        if (act === "edit") return openItemEditor(catId, cat?.items.find((i) => i.id === itemId));
+        if (act === "del") return deleteItem(catId, itemId);
+        if (act === "up" || act === "down") return moveItem(catId, itemId, act);
+        return;
+      }
+
+      // Otherwise it's a category-level action.
       if (act === "add-item") return openItemEditor(catId, null);
       if (act === "edit") return openCategoryEditor(catId);
       if (act === "del") return deleteCategory(catId);
-      if (act === "up" || act === "down") {
-        const itemEl = btn.closest("[data-item]");
-        if (itemEl) return moveItem(catId, itemEl.dataset.item, act);
-        return moveCategory(catId, act);
-      }
+      if (act === "up" || act === "down") return moveCategory(catId, act);
     });
   });
 }
