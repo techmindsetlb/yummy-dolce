@@ -2,6 +2,14 @@
    YUMMY DOLCE — Admin panel
    ============================================================ */
 
+/* The `hidden` attribute must always beat the display rules below
+   (e.g. .admin-view { display: grid }) — otherwise the admin panel
+   stays visible on the login page and the login stays visible after
+   logging in. */
+[hidden] {
+  display: none !important;
+}
+
 body {
   background: var(--canvas-1);
 }
