@@ -758,7 +758,7 @@ function renderOrdersList() {
         const itemsHtml = (o.items || [])
           .map((it) => {
             const opts = (it.options || []).length ? ` <em style="color:var(--ink-muted)">(${escapeHtml(it.options.join(" / "))})</em>` : "";
-            return `<div class="oi-row"><span>${escapeHtml(it.qty)}× ${escapeHtml(it.name)}${opts}</span><span>${fmtPrice(cur, (Number(it.unitPrice) || 0) * Number(it.qty || 1))}</span></div>`;
+            return `<div class="oi-row"><span>${escapeHtml(it.qty)}× ${escapeHtml(it.name)}${it.category ? ` <em style="color:var(--ink-muted)">[${escapeHtml(it.category)}]</em>` : ""}${opts}</span><span>${fmtPrice(cur, (Number(it.unitPrice) || 0) * Number(it.qty || 1))}</span></div>`;
           })
           .join("");
         return `

@@ -759,6 +759,21 @@
   font-size: 0.98rem;
 }
 
+.line-cat {
+  display: inline-block;
+  margin-left: 0.35rem;
+  padding: 0.12rem 0.55rem;
+  border-radius: var(--r-full);
+  background: var(--rose-mist);
+  color: var(--rose-deep);
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  vertical-align: 2px;
+}
+
 .line-opts {
   margin-top: 0.25rem;
   font-size: var(--text-xs);

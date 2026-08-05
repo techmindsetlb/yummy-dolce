@@ -240,6 +240,14 @@ function findItem(id) {
   return null;
 }
 
+/** Category name of an item — some item names repeat across categories (e.g. "Original"). */
+function findItemCategory(itemId) {
+  for (const cat of categories) {
+    if ((cat.items || []).some((i) => i.id === itemId)) return cat.name || "";
+  }
+  return "";
+}
+
 /* ------------------------- Adding to cart ------------------------- */
 
 function onAddItem(id) {
@@ -267,7 +275,16 @@ function makeLine(item, selection, qty) {
     }
   }
   const key = `${item.id}|${lines.map((l) => l.text).join("~")}`;
-  return { key, itemId: item.id, name: item.name, image: item.image, qty, unitPrice: round2(unit), lines };
+  return {
+    key,
+    itemId: item.id,
+    name: item.name,
+    catName: findItemCategory(item.id),
+    image: item.image,
+    qty,
+    unitPrice: round2(unit),
+    lines,
+  };
 }
 
 function addLine(line) {
@@ -446,7 +463,7 @@ function renderCart() {
               ${thumb ? `<img src="${escapeHtml(thumb)}" alt="" loading="lazy" />` : icons.cookie}
             </div>
             <div class="line-main">
-              <div class="line-name">${escapeHtml(l.name)}</div>
+              <div class="line-name">${escapeHtml(l.name)}${l.catName ? ` <span class="line-cat">${escapeHtml(l.catName)}</span>` : ""}</div>
               ${opts ? `<div class="line-opts">${escapeHtml(opts)}</div>` : ""}
               ${addons.length ? `<div class="line-opts">${addons.map((a) => `<span class="opt-plus">+</span> ${escapeHtml(a.text)} (+${fmtPrice(business.currency, a.price)})`).join("<br>")}</div>` : ""}
               <div style="margin-top:0.45rem">
@@ -507,7 +524,7 @@ function openCheckoutModal() {
       const opts = l.lines.filter((x) => x.kind === "opt").map((x) => x.text).join(" / ");
       const addons = l.lines.filter((x) => x.kind === "addon");
       const extra = addons.length ? ` + ${addons.map((a) => a.text).join(" + ")}` : "";
-      return `<div class="cs-row"><span>${escapeHtml(l.qty)}× ${escapeHtml(l.name)}${opts ? ` <em style="color:var(--ink-muted)">(${escapeHtml(opts)}${escapeHtml(extra)})</em>` : ""}</span><span>${fmtPrice(cur, l.unitPrice * l.qty)}</span></div>`;
+      return `<div class="cs-row"><span>${escapeHtml(l.qty)}× ${escapeHtml(l.name)}${l.catName ? ` <em style="color:var(--ink-muted)">[${escapeHtml(l.catName)}]</em>` : ""}${opts ? ` <em style="color:var(--ink-muted)">(${escapeHtml(opts)}${escapeHtml(extra)})</em>` : ""}</span><span>${fmtPrice(cur, l.unitPrice * l.qty)}</span></div>`;
     })
     .join("");
 
@@ -599,7 +616,7 @@ async function sendOrder({ name, phone, address, note }) {
     .map((l) => {
       const opts = l.lines.filter((x) => x.kind === "opt").map((x) => x.text).join(" / ");
       const addons = l.lines.filter((x) => x.kind === "addon");
-      const head = `• ${l.qty}× ${l.name}${opts ? ` (${opts})` : ""} — ${fmtPrice(cur, l.unitPrice * l.qty)}`;
+      const head = `• ${l.qty}× ${l.name}${l.catName ? ` [${l.catName}]` : ""}${opts ? ` (${opts})` : ""} — ${fmtPrice(cur, l.unitPrice * l.qty)}`;
       const extra = addons.map((a) => `   + ${a.text} — ${fmtPrice(cur, a.price)}`).join("\n");
       return extra ? `${head}\n${extra}` : head;
     })
@@ -615,6 +632,7 @@ async function sendOrder({ name, phone, address, note }) {
         name: l.name,
         qty: l.qty,
         unitPrice: l.unitPrice,
+        category: l.catName || "",
         options: l.lines.map((x) => x.text),
       })),
       total: cart.subtotal,

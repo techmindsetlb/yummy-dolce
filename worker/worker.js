@@ -152,6 +152,7 @@ async function handlePostOrder(request, env, json, fail) {
       name: String(i.name || "Item").slice(0, 80),
       qty: Math.max(1, Math.min(99, Number(i.qty) || 1)),
       unitPrice: Number(i.unitPrice) || 0,
+      category: String(i.category || "").slice(0, 40),
       options: (Array.isArray(i.options) ? i.options : [])
         .map((o) => String(o).slice(0, 80))
         .slice(0, 12),
