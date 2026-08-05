@@ -22,7 +22,15 @@ class Cart {
       const saved = JSON.parse(raw);
       if (!Array.isArray(saved)) return;
       for (const line of saved) {
-        if (line && line.key && line.qty > 0) this._lines.set(line.key, line);
+        if (
+          line &&
+          line.key &&
+          line.qty > 0 &&
+          typeof line.name === "string" &&
+          typeof line.unitPrice === "number"
+        ) {
+          this._lines.set(line.key, line);
+        }
       }
     } catch {
       /* ignore corrupt storage */

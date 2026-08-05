@@ -678,6 +678,16 @@ function makeOrderId() {
 
 /* ------------------------- Wiring ------------------------- */
 
+function syncCartUI() {
+  const count = cart.count;
+  els.cartBadge.textContent = count;
+  els.cartBadge.hidden = count === 0;
+  els.cartBarCount.textContent = `${count} item${count === 1 ? "" : "s"}`;
+  els.cartBarTotal.textContent = fmtPrice(business.currency, cart.subtotal);
+  els.cartBar.classList.toggle("show", count > 0);
+  if (drawerOpen) renderCart();
+}
+
 function init() {
   initModalControls(els.overlay);
 
@@ -700,15 +710,6 @@ function init() {
     els.header.classList.toggle("scrolled", window.scrollY > 8);
   }, { passive: true });
 
-  const syncCartUI = () => {
-    const count = cart.count;
-    els.cartBadge.textContent = count;
-    els.cartBadge.hidden = count === 0;
-    els.cartBarCount.textContent = `${count} item${count === 1 ? "" : "s"}`;
-    els.cartBarTotal.textContent = fmtPrice(business.currency, cart.subtotal);
-    els.cartBar.classList.toggle("show", count > 0);
-    if (drawerOpen) renderCart();
-  };
   cart.subscribe(syncCartUI);
   syncCartUI(); // reflect any cart restored from localStorage
 
@@ -724,6 +725,7 @@ async function loadMenu() {
     categories = (data.categories || []).sort((a, b) => (a.sort || 0) - (b.sort || 0));
     renderBusiness();
     renderMenu();
+    syncCartUI(); // re-sync totals with the real currency
   } catch (err) {
     // Keep the site chrome from defaults so the page still looks alive.
     renderBusiness();
