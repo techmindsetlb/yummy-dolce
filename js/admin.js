@@ -609,11 +609,11 @@ function openItemEditor(catId, item) {
     const gEl = btn.closest("[data-gi]");
     const gi = gEl ? +gEl.dataset.gi : groupsModel.length;
 
-    if (btn.dataset.delGroup) {
+    if (btn.hasAttribute("data-del-group")) {
       groupsModel.splice(gi, 1);
-    } else if (btn.dataset.addChoice) {
+    } else if (btn.hasAttribute("data-add-choice")) {
       groupsModel[gi].choices.push({ id: uid("c-"), label: "", price: null, description: "" });
-    } else if (btn.dataset.delChoice) {
+    } else if (btn.hasAttribute("data-del-choice")) {
       groupsModel[gi].choices.splice(+btn.closest("[data-ci]").dataset.ci, 1);
     }
     renderGroups();
