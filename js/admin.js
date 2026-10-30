@@ -154,6 +154,7 @@ document.querySelectorAll(".admin-nav-item[data-tab]").forEach((btn) =>
 );
 
 $("save-btn").addEventListener("click", saveChanges);
+$("add-category-btn").addEventListener("click", () => openCategoryEditor(null));
 
 async function saveChanges() {
   if (!state.menu || state.saving) return;
@@ -185,19 +186,18 @@ async function saveChanges() {
 function renderMenuPane() {
   const pane = $("menu-pane");
   const cats = state.menu.categories;
+  $("add-category-btn").disabled = false;
 
   if (!cats.length) {
     pane.innerHTML = `
       <div class="menu-empty">
         <h3>No menu yet</h3>
-        <p>Start from the sample menu we built from your printed menu, or add categories from scratch.</p>
+        <p>Start from the sample menu we built from your printed menu, or use Add category above to build it from scratch.</p>
         <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap">
           <button class="btn btn-primary" id="load-sample" type="button">${icons.box}<span>Load sample menu</span></button>
-          <button class="btn btn-secondary" id="add-cat" type="button">${icons.plus}<span>Add a category</span></button>
         </div>
       </div>`;
     pane.querySelector("#load-sample").addEventListener("click", loadSampleMenu);
-    pane.querySelector("#add-cat").addEventListener("click", () => openCategoryEditor(null));
     return;
   }
 
@@ -386,16 +386,22 @@ function openCategoryEditor(catId) {
       return;
     }
     const subtitle = $("cat-sub").value.trim();
+    let addedCategoryId = null;
     if (cat) {
       cat.name = name;
       cat.subtitle = subtitle;
     } else {
-      state.menu.categories.push({ id: uid("cat-"), name, subtitle, sort: nextSort(state.menu.categories), items: [] });
+      addedCategoryId = uid("cat-");
+      state.menu.categories.push({ id: addedCategoryId, name, subtitle, sort: nextSort(state.menu.categories), items: [] });
     }
     markDirty();
     closeModal();
     renderMenuPane();
-    toast(cat ? "Category updated" : "Category added");
+    if (addedCategoryId) {
+      const newBlock = document.querySelector(`.category-block[data-cat="${addedCategoryId}"]`);
+      newBlock?.classList.add("open");
+    }
+    toast(cat ? "Category updated" : "Category added — you can add items to it now");
   });
 }
 
